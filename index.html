@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>个人所得税计算器 - 个税计算器|工资计算器</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<link rel="stylesheet" type="text/css" href="./sucai/css.css">
+<script src="./sucai/hm.js"></script><script type="text/javascript" src="./sucai/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="./sucai/public.js"></script>
+<style>
+label.form_left {width: 60px;margin-right: 0;}
+input.text {width: 180px;}
+select.select {padding: 4px 3px;}
+button {padding:4px 3px;margin: 0;vertical-align: middle;}
+.bg-form {background: #f5f5f5!important;}
+.gerenshui h3 {margin: 10px 0 20px 0;color: #1c61ba;}
+.gerenshui .button {padding:6px 20px;}
+.manual li {font-size:14px;}
+.box input,.box select {padding: 4px 6px;font-size: 14px;line-height: 18px;color: #333333;vertical-align: middle;margin-right: 10px;}
+.box .boxleft  input,
+.box .boxright input {width:60%;}
+.box .boxleft  select,
+.box .boxright select {width:69%;}
+.box .item_input {margin-bottom:5px;}
+.ttt {text-align:center;}
+.article_zhuanti .gerenshui .clear {height:initial;padding-top: 10px;}
+@media screen and (max-width: 481px) {
+	.gerenshui {margin: 0 20px;}
+	.article .content div.item_title,
+	.article .content div.item_input { line-height: 1.3;}
+	.article_zhuanti .gerenshui .clear {height:initial;padding-top: 10px;padding-bottom: 20px;}
+	.gerenshui h3 {margin: 10px 0 10px 0;}
+	.box .item_input {margin-bottom:0}
+	.box .item_title, .box .item_input {height: initial;}
+}
+</style>
+<input type="hidden" id="_w_simile" data-inspect-config="3"><script type="text/javascript" src="chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspector.js"></script></head>
+<body class="article_zhuanti">
+<div class="inner">
+	<div class="inner-box">
+		<div class="inner-logo">
+			<a href="" title="计算器在线">个人所得税计算器</a>
+			<h3>个人税</h3>
+		</div>
+	</div>
+</div>
+<div class="container article">
+<style>.toolnav {display:none;}</style>
+<div class="main">
+
+	<div class="content">
+		<ol id="manual" class="manual">
+			<li><b>个人所得税：</b>工资所得个人所得税计算公式为:应纳税所得额=工资收入金额-各项社会保险费-5000元;超额累进税率计算：应纳税额=应纳税所得额*税率-速算扣除数。</li>
+		</ol>
+	<form class="bg-form"><div class="box gerenshui">
+
+
+
+	<div class="boxleft fl">
+        <h3>工资薪金所得（月薪 税前）</h3>
+		<div class="item_box">
+			<div class="item_title">收入类型</div>
+			<div class="item_input">
+			<select class="gerenshui_type" id="taxType" onchange="taxTypeChange()">
+				<option value="../gerenshui/" selected="selected">工资、薪金所得（税前）</option>
+				<option value="../gerenshui/gongzi.html">工资薪金所得（税后）</option>
+				<option value="../gerenshui/nianzhongjiang.html">年终奖所得</option>
+				<option value="../gerenshui/laowu.html">劳务报酬所得</option>
+				<option value="../gerenshui/jingying.html">个体工商户生产、经营所得</option>
+				<option value="../gerenshui/chengbao.html">对企事业单位的承包、承租经营所得</option>
+				<option value="../gerenshui/gaochou.html">稿酬所得</option>
+				<option value="../gerenshui/texu.html">特许权使用费所得</option>
+				<option value="../gerenshui/zulin.html">财产租赁所得</option>
+				<option value="../gerenshui/zhuanrang.html">财产转让所得</option>
+				<option value="../gerenshui/hongli.html">利息、股息、红利所得</option>
+				<option value="../gerenshui/ouran.html">偶然所得</option>
+			</select></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">纳税期数</div>
+			<div class="item_input"><select class="" id="taxPeriod" onchange="taxPeriodChange()">
+					  <option value="1" selected="selected">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					  <option value="9">9</option>
+					  <option value="10">10</option>
+					  <option value="11">11</option>
+					  <option value="12">12</option>
+					</select></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">本月工资</div>
+			<div class="item_input"><input id="txtIncome" name="" type="text" value="" oninput="incomeChange()" onkeydown="keyControl(event,this)"><span>元</span></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">累计</div>
+			<div class="item_input"><input id="txtIncomeAll" name="" type="text" value="" onkeydown="keyControl(event,this)"></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">各项社会保险费</div>
+			<div class="item_input"><input id="txtInsure" name="" type="text" value="0" oninput="insureChange()" onkeydown="keyControl(event,this)"><span>元</span></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">累计</div>
+			<div class="item_input"><input id="txtInsureAll" name="" type="text" value="0" onkeydown="keyControl(event,this)"><span>元</span></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">专项附加扣除</div>
+			<div class="item_input"><input id="txtZXFJ" name="" type="text" value="0" oninput="zxfjChange()" onkeydown="keyControl(event,this)"><span>元</span></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">累计</div>
+			<div class="item_input"><input id="txtZXFJAll" name="" type="text" value="0" onkeydown="keyControl(event,this)"> <span>元</span></div>
+		</div>
+    </div> 
+    <div class="boxright fr">
+        <h3>个人所得税计算结果</h3> 
+		<div class="item_box">
+			<div class="item_title">应纳税所得额</div>
+			<div class="item_input"><span id="lblTaxableIncome" style="color:#EE4000;">0</span> 元</div> 
+		</div>
+		<div class="item_box">
+			<div class="item_title">适用税率</div>
+			<div class="item_input"><span id="lblTaxRate" style="color:#EE4000;">0</span> %</div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">速算扣除数</div>
+			<div class="item_input"><span id="lblQuick" style="color:#EE4000;">0</span> 元</div> 
+		</div>
+		<div class="item_box">
+			<div class="item_title">累计应缴税款</div>
+			<div class="item_input"><input id="txtTaxAll" type="text" readonly="readonly" style="color:#EE4000;"><span> 元</span></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">已缴税款</div>
+			<div class="item_input"><input id="txtTaxAlready" type="text" readonly="readonly" style="color:#EE4000;"><span> 元</span></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">应补（退）税款</div>
+			<div class="item_input"><input id="txtTax" type="text" readonly="readonly" style="color:#EE4000;"><span> 元</span></div>
+		</div>
+		<div class="item_box">
+			<div class="item_title">实发工资</div>
+			<div class="item_input"><input id="txtRealIncome" type="text" readonly="readonly" style="color:#EE4000;"> <span>元</span></div>
+		</div>
+    </div> 
+    <div class="clear">
+		<center>
+        <input type="button" class="button btnchk" value=" 计 算 " id="btnCalc" onclick="btnCalc_onClick_total_index(1)">
+        <input type="button" class="button" value=" 重 置 " id="rst" onclick="btnReset_onClick_total_index()">
+		</center>
+    </div> 
+
+
+</div></form>
+
+	<script>advertContentTop();</script>
+	
+	<div class="clear"></div>	
+	<p><strong>个税起征点：</strong>2019年1月1日起个人所得税免征额调至5000元。</p>
+	<p><strong>个人所得税税率表：</strong>个税税率表，5000元起征点，包括工资税率表、年终奖税率表、劳务税率表，个体户税率表等</p>
+	
+	
+	<table width="100%" border="1" align="left" cellpadding="0" cellspacing="1" bgcolor="#ccc" class="pages_table">
+	<caption>个人所得税预扣率表一（居民个人工资、薪金所得预扣预缴适用）</caption> 
+	<thead>
+		<tr> 
+			<th height="25" bgcolor="#f0f0f0">级数</th> 
+			<th bgcolor="#f0f0f0">累计预扣预缴应纳税所得额</th> 
+			<th bgcolor="#f0f0f0">预扣率（%）</th> 
+			<th bgcolor="#f0f0f0">速算扣除数</th> 
+		</tr> 
+	</thead>
+	<tbody>
+		<tr> 
+			<td height="25" bgcolor="#f9f9f9">1</td> 
+			<td bgcolor="#f9f9f9">不超过36,000元的部分</td> 
+			<td bgcolor="#f9f9f9">3</td> 
+			<td bgcolor="#f9f9f9">0</td> 
+		</tr> 
+		<tr> 
+			<td height="25" bgcolor="#f9f9f9">2</td> 
+			<td bgcolor="#f9f9f9">超过36,000元至144,000元的部分</td> 
+			<td bgcolor="#f9f9f9">10</td> 
+			<td bgcolor="#f9f9f9">2520</td> 
+		</tr> 
+		<tr> 
+			<td height="25" bgcolor="#f9f9f9">3</td> 
+			<td bgcolor="#f9f9f9">超过144,000元至300,000元的部分</td> 
+			<td bgcolor="#f9f9f9">20</td> 
+			<td bgcolor="#f9f9f9">16920</td> 
+		</tr> 
+		<tr> 
+			<td height="25" bgcolor="#f9f9f9">4</td> 
+			<td bgcolor="#f9f9f9">超过300,000元至420,000元的部分</td> 
+			<td bgcolor="#f9f9f9">25</td> 
+			<td bgcolor="#f9f9f9">31920</td> 
+		</tr> 
+		<tr> 
+			<td height="25" bgcolor="#f9f9f9">5</td> 
+			<td bgcolor="#f9f9f9">超过420,000元至660,000元的部分</td> 
+			<td bgcolor="#f9f9f9">30</td> 
+			<td bgcolor="#f9f9f9">52920</td> 
+		</tr> 
+		<tr> 
+			<td height="25" bgcolor="#f9f9f9">6</td> 
+			<td bgcolor="#f9f9f9">超过660,000元至960,000元的部分</td> 
+			<td bgcolor="#f9f9f9">35</td> 
+			<td bgcolor="#f9f9f9">85920</td> 
+		</tr> 
+		<tr> 
+			<td height="25" bgcolor="#f9f9f9">7</td> 
+			<td bgcolor="#f9f9f9">超过960,000元的部分</td> 
+			<td bgcolor="#f9f9f9">45</td> 
+			<td bgcolor="#f9f9f9">181920</td> 
+		</tr> 
+	</tbody>
+</table>
+	<p>&nbsp;</p>
+
+	</div>
+	
+	<div class="clear"></div>
+	
+</div>
+</div>
+
+
+<script type="text/javascript" src="./sucai/index2019.js"></script>
+
+	
+	<style>
+	.subnav-type a {width: 10%;}
+	#hanldeOtherTools {margin:15px auto 0;display: block;text-decoration: none;border: 1px solid #4162ea;width: 160px;text-align: center;padding: 4px 0;border-radius: 5px;color: #4162ea;}
+	#hanldeOtherTools:hover {background:#4162ea;color:#ffffff;}
+	@media screen and (max-width: 481px) { 
+		.othertoolstitle {width: 28%;height:auto;}
+		#hanldeOtherTools {border: 1px solid #666666;color:#666666;width:90%;background:#ffffff;margin:auto;}
+	}
+	</style>
+	<script>
+	var tab = document.getElementsByClassName('othertoolstitle')[0].getElementsByTagName('li');
+	var tabBox = document.getElementsByName('subnavdiv');
+	tabBox[0].style.display = 'block';
+	for(var i=0; i< tab.length; i++) {
+		tab[i].index = i;
+		tab[i].onmouseover = function(){
+			for(var i=0; i< tab.length; i++) {
+tab[i].className = '';
+tabBox[i].style.display = 'none';
+			}
+			this.className = 'active';
+			tabBox[this.index].style.display = 'block';
+		}
+	}
+	function showOtherTools() {
+		document.getElementById('hanldeOtherTools').style.display = 'none';
+		document.getElementById('otherTools').style.display = 'block';
+		var x = document.getElementsByName('subnavdiv');
+		x[0].style.display = 'block';
+		var dateTime = new Date();
+		dateTime = dateTime.setDate(dateTime.getDate()+7);
+		dateTime = new Date(dateTime)
+		document.cookie = 'showTools=1;expires=' + dateTime + '';
+	}
+	function hideOtherTools() {
+		if(isMobile()){;
+			document.getElementById('hanldeOtherTools').style.display = 'block';
+			document.getElementById('otherTools').style.display = 'none';
+			document.cookie = 'showTools=0;'
+		};
+	}
+	if(!isMobile()){
+		showOtherTools();
+	}
+	</script>
+
+	</div>
+
+</body></html>
